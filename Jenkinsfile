@@ -1,7 +1,7 @@
 @Library('shared_library@main') _  // Correct syntax
 
 pipeline {
-    agent { label 'slave' }
+    agent { label 'slave1' }
 
     environment {
         JAVA_HOME = '/usr/lib/jvm/java-17-openjdk-amd64'
