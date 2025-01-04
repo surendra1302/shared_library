@@ -13,7 +13,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
               script {
-                shared.checkout()
+                shared.checkoutCode()
               }
             }
         }
@@ -21,7 +21,7 @@ pipeline {
         stage('Set up Java 17') {
             steps {
               script {
-               shared.java()
+               shared.setupJava()
               }
             }
         }
@@ -29,7 +29,7 @@ pipeline {
         stage('Set up Maven') {
             steps {
               script {
-               shared.maven()
+               shared.setupMaven()
               }
             }
         }
@@ -37,7 +37,7 @@ pipeline {
         stage('Build with Maven') {
             steps {
               script {
-                shared.build()
+                shared.buildProject()
               }
             }
         }
@@ -45,7 +45,7 @@ pipeline {
         stage('Tagging theBuild') {
             steps {
               script {
-                shared.tag()
+                shared.tagBuild()
               }
             }
         }
@@ -53,7 +53,7 @@ pipeline {
         stage('Upload Artifact') {
             steps {
               script {
-                shared.artifact('target/bus-booking-app-1.0-SNAPSHOT.jar')
+                shared.uploadArtifact('target/bus-booking-app-1.0-SNAPSHOT.jar')
               }
             }
         }
@@ -61,7 +61,7 @@ pipeline {
         stage('Run Application') {
             steps {
               script {
-                shared.run()
+                shared.runApplication()
               }
             }
         }
@@ -69,7 +69,7 @@ pipeline {
         stage('Validate App is Running') {
             steps {
               script {
-                shared.validate()
+                shared.validateApp()
               }
             }
         }
@@ -77,7 +77,7 @@ pipeline {
         stage('Gracefully Stop Spring Boot App') {
             steps {
               script {
-                shared.stop()
+                shared.stopApplication()
               }
             }
         }
