@@ -42,14 +42,14 @@ pipeline {
             }
         }
 
-        stage('Tagging theBuild') {
+       /* stage('Tagging theBuild') {
             steps {
               script {
                 shared.tagBuild()
               }
             }
         }
-      
+*/      
         stage('Upload Artifact') {
             steps {
               script {
