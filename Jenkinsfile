@@ -13,7 +13,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
               script {
-                pipeline.checkout()
+                shared.checkout()
               }
             }
         }
@@ -21,7 +21,7 @@ pipeline {
         stage('Set up Java 17') {
             steps {
               script {
-                pipeline.java()
+               shared.java()
               }
             }
         }
@@ -29,7 +29,7 @@ pipeline {
         stage('Set up Maven') {
             steps {
               script {
-                pipeline.maven()
+               shared.maven()
               }
             }
         }
@@ -37,7 +37,7 @@ pipeline {
         stage('Build with Maven') {
             steps {
               script {
-                pipeline.build()
+                shared.build()
               }
             }
         }
@@ -45,7 +45,7 @@ pipeline {
         stage('Tagging theBuild') {
             steps {
               script {
-                pipeline.tag()
+                shared.tag()
               }
             }
         }
@@ -53,7 +53,7 @@ pipeline {
         stage('Upload Artifact') {
             steps {
               script {
-                pipeline.artifact('target/bus-booking-app-1.0-SNAPSHOT.jar')
+                shared.artifact('target/bus-booking-app-1.0-SNAPSHOT.jar')
               }
             }
         }
@@ -61,7 +61,7 @@ pipeline {
         stage('Run Application') {
             steps {
               script {
-                pipeline.run()
+                shared.run()
               }
             }
         }
@@ -69,7 +69,7 @@ pipeline {
         stage('Validate App is Running') {
             steps {
               script {
-                pipeline.validate()
+                shared.validate()
               }
             }
         }
@@ -77,7 +77,7 @@ pipeline {
         stage('Gracefully Stop Spring Boot App') {
             steps {
               script {
-                pipeline.stop()
+                shared.stop()
               }
             }
         }
@@ -86,7 +86,7 @@ pipeline {
     post {
         always {
             script {
-            pipeline.cleanup()
+            shared.cleanup()
             }
         }
     }
