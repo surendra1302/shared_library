@@ -29,6 +29,8 @@ def tagBuild(String tagName, String message = 'Build tagging') {
     sh """
         git tag -a "${tagName}" -m "${message}"
         git push origin "${tagName}"
+        git config --global user.email "surendrakorivi96@gmail.com"
+        git config --global user.name "surendra1302"
     """
 }
 
