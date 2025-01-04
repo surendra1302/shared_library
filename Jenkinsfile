@@ -85,7 +85,9 @@ pipeline {
 
     post {
         always {
+            script {
             pipeline.cleanup()
+            }
         }
     }
 }
