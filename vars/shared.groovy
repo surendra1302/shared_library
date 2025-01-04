@@ -1,25 +1,25 @@
-def checkout() {
+def checkoutCode() {
     echo 'Checking out code...'
     checkout scm
 }
 
-def java() {
+def setupJava() {
     echo 'Setting up Java 17...'
     sh 'sudo apt update'
     sh 'sudo apt install -y openjdk-17-jdk'
 }
 
-def maven() {
+def setupMaven() {
     echo 'Setting up Maven...'
     sh 'sudo apt install -y maven'
 }
 
-def build() {
+def buildProject() {
     echo 'Building project with Maven...'
     sh 'mvn clean package'
 }
 
-def tag(String tagName, String message = 'Build tagging') {
+def tagBuild(String tagName, String message = 'Build tagging') {
     if (!tagName?.trim()) {
         error "Tag name cannot be null or empty"
     }
@@ -33,12 +33,12 @@ def tag(String tagName, String message = 'Build tagging') {
 }
 
 
-def artifact(String artifactPath) {
+def uploadArtifact(String artifactPath) {
     echo 'Uploading artifact...'
     archiveArtifacts artifacts: artifactPath, allowEmptyArchive: true
 }
 
-def run() {
+def runApplication() {
     echo 'Running Spring Boot application...'
     sh 'nohup mvn spring-boot:run &'
     sleep(time: 15, unit: 'SECONDS')
@@ -47,7 +47,7 @@ def run() {
     echo "The application is running and accessible at: http://${publicIp}:8080"
 }
 
-def validate() {
+def validateApp() {
     echo 'Validating that the app is running...'
     def response = sh(script: 'curl --write-out "%{http_code}" --silent --output /dev/null http://localhost:8080', returnStdout: true).trim()
     if (response == "200") {
@@ -58,7 +58,7 @@ def validate() {
     }
 }
 
-def stop() {
+def stopApplication() {
     echo 'Gracefully stopping the Spring Boot application...'
     sh 'mvn spring-boot:stop'
 }
