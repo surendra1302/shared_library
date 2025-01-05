@@ -53,7 +53,7 @@ pipeline {
         stage('Upload Artifact') {
             steps {
               script {
-                shared.uploadArtifact('target/bus-booking-app-1.0-SNAPSHOT.jar')
+                shared.uploadArtifact('target/*.jar')
               }
             }
         }
