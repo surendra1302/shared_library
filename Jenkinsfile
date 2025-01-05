@@ -1,4 +1,4 @@
-@Library('shared_library@main') _  // Correct syntax
+@Library('shared_library@feature-1) _  // Correct syntax
 
 pipeline {
     agent { label 'slave1' }
